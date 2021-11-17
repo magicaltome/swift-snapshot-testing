@@ -824,6 +824,14 @@ final class SnapshotTestingTests: XCTestCase {
     assertSnapshot(matching: view, as: .recursiveDescription)
     #endif
   }
+  
+  func testUIViewDifference() {
+    #if os(iOS)
+    let view = UIButton(type: .contactAdd)
+    XCTExpectFailure()
+    assertSnapshot(matching: view, as: .image)
+    #endif
+  }
 
   func testUIViewControllerLifeCycle() {
     #if os(iOS)
