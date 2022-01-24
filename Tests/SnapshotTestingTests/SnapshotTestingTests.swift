@@ -825,6 +825,14 @@ final class SnapshotTestingTests: XCTestCase {
     #endif
   }
   
+  func testUIViewFailsIfNewViewHasNoFrame() {
+    #if os(iOS)
+    let view = UIView(frame: .zero)
+    XCTExpectFailure()
+    assertSnapshot(matching: view, as: .image)
+    #endif
+  }
+  
   func testUIViewDifference() {
     #if os(iOS)
     let view = UIButton(type: .contactAdd)
